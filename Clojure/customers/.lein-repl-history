@@ -1,0 +1,5 @@
+(choose-player1)
+(choose-player2)
+(choose-arbiter)
+customer
+(customer {:data ["requestCasting"]})
