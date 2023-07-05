@@ -81,8 +81,9 @@
   (println "\tChoice\tDescription")
   (println "\t------\t-----------")
   (println "\t1\t[Draw a winner] Non interactive arbiter (default)")
-  (println "\t2\t[Connect four] Non interactive arbiter")
-  (println "\t3\t[Infection] Non interactive arbiter")
+  (println "\t2\t[Connect four] Non interactive arbiter as \"local-clojure-agent\"")
+  (println "\t3\t[Connect four] Non interactive arbiter as \"http webservice on localhost port 3000\"")
+  (println "\t4\t[Infection] Non interactive arbiter")
   (println "\tOther\t*default*")
   (print "\tChoose arbiter: ")
   (flush)
@@ -90,7 +91,8 @@
     (case arbiter-choice
       "1" "local-clojure-agent://games.draw-a-winner.non-interactive-arbiter/arbiter"
       "2" "local-clojure-agent://games.connect-four.non-interactive-arbiter/arbiter"
-      "3" "local-clojure-agent://games.infection.non-interactive-arbiter/arbiter"
+      "3" "https://localhost:3000"
+      "4" "local-clojure-agent://games.infection.non-interactive-arbiter/arbiter"
       "local-clojure-agent://games.draw-a-winner.non-interactive-arbiter/arbiter"
     )
   )
@@ -115,17 +117,17 @@
   	 first-data-element (first (:data unit-input))
        ]
        (case first-data-element
-         "requestCasting" (let [castings (cast-actors)]
-	                    {:data [(str {:status "castingOK" :castings castings})]}
-			  )
-         "notifyStatus" (do
-                          (println "\n\tGame status: " (nth (:data unit-input) 1) "\n")
-			  {:data ["statusReceived"]}
-			)
-	 "notifyTimeout" (do
-	                   (println "\n\t*** Timeout occured ***\n")
-	                   {:data []}
+         "request-casting" (let [castings (cast-actors)]
+	                     {:data [(str {:status "castingOK" :castings castings})]}
+			   )
+         "notify-status" (do
+                           (println "\n\tGame status: " (nth (:data unit-input) 1) "\n")
+			   {:data ["statusReceived"]}
 			 )
+	 "notify-timeout" (do
+	                    (println "\n\t*** Timeout occured ***\n")
+	                    {:data []}
+			  )
 
 	 {:data ["Error in data"]}
        )
