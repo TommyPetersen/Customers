@@ -39,7 +39,7 @@
 )
 
 (defroutes app-routes
-  (GET "/" [] "This is a regression test of localhost web services for customers.")
+  (GET "/" [] "This is a web services for a customer requesting a game.")
   (GET "/request-casting" [] request-casting)
   (GET "/notify-status" [] notify-status)
   (GET "/notify-timeout" [] notify-timeout)
