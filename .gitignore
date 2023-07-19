@@ -23,3 +23,9 @@ Specification/Fig/xfigNotes.txt
 # Log:
 *.log
 
+# Dynamic configuration:
+Clojure/Webservices/GameEngP2T/game_eng_p2t/resources/game_setup.json
+
+
+
+
