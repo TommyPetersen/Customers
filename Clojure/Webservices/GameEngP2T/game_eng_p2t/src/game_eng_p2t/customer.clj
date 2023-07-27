@@ -11,6 +11,7 @@
 )
 
 (def castings (atom nil))
+(def stop-fn (atom nil))
 
 (defn request-casting [req]
   {
@@ -38,11 +39,16 @@
   }
 )
 
+(defn stop-server [req]
+  (@stop-fn)
+)
+
 (defroutes app-routes
   (GET "/" [] "This is a web service for a customer requesting a game.")
   (GET "/request-casting" [] request-casting)
   (GET "/notify-status" [] notify-status)
   (GET "/notify-timeout" [] notify-timeout)
+  (GET "/stop-server" [] stop-server)
   
   (route/not-found "Error, page not found!")
 )
@@ -56,7 +62,7 @@
 	 castings-atom-value (reset! castings {:player1 (json-map "player1") :player2 (json-map "player2") :arbiter (json-map "arbiter")})
          port (Integer/parseInt (or (System/getenv "PORT") "2000"))
        ]
-       (server/run-server (wrap-defaults #'app-routes site-defaults) {:port port})
+       (reset! stop-fn (server/run-server (wrap-defaults #'app-routes site-defaults) {:port port}))
        (println (str "Running '" (:ns (meta #'-main)) "' as webservice at 'http://127.0.0.1:" port "'"))
   )
 )

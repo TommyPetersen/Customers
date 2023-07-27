@@ -1,11 +1,13 @@
 {
   "_comment-arbiter: 3100": "Infection/non-interactive-arbiter.arbiter",
-  "arbiter": "http://localhost:3100",
+  "_arbiter": "http://localhost:3100",
+  "arbiter": "local-clojure-agent://games.infection.non-interactive-arbiter.arbiter",
   
   "_comment-player1: 3101": "Infection/non-interactive-minimax-player1.player",
-  "player1": "http://localhost:3101",
-  "_player1": "local-clojure-agent://games.infection.interactive-gui-player/player1",
+  "_player1": "http://localhost:3101",
+  "player1": "local-clojure-agent://games.infection.interactive-gui-player/player1",
   
   "_comment-player2: 3102": "Infection/non-interactive-minimax-player2.player",
-  "player2": "http://localhost:3102"
+  "_player2": "http://localhost:3102",
+  "player2": "local-clojure-agent://games.infection.interactive-text-player/player2"
 }
