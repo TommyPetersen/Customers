@@ -16,7 +16,7 @@
 (defn request-casting [req]
   {
     :status 200
-    :headers {"Content-Type" "text/json"}
+    :headers {"Content-Type" "application/json"}
     :body (json/write-str {:data [(str {:status "castingOK" :castings @castings})]})
   }
 )
@@ -25,7 +25,7 @@
   (let [game-status (:game-status (:params req))]
        {
          :status 200
-         :headers {"Content-Type" "text/json"}
+         :headers {"Content-Type" "application/json"}
          :body (json/write-str {:data ["statusReceived"]})
        }
   )
@@ -34,7 +34,7 @@
 (defn notify-timeout [req]
   {
     :status 200
-    :headers {"Content-Type" "text/json"}
+    :headers {"Content-Type" "application/json"}
     :body (json/write-str {:data ["Oh no, time is up!"]})
   }
 )
