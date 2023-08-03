@@ -1,7 +1,7 @@
 {
   "_comment-arbiter: 3100": "Infection/non-interactive-arbiter.arbiter",
   "_arbiter": "http://localhost:3100",
-  "arbiter": "local-clojure-agent://games.infection.non-interactive-arbiter.arbiter",
+  "arbiter": "local-clojure-agent://games.infection.non-interactive-arbiter/arbiter",
   
   "_comment-player1: 3101": "Infection/non-interactive-minimax-player1.player",
   "_player1": "http://localhost:3101",

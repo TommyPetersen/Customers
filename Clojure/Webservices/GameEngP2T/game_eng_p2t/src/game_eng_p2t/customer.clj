@@ -13,12 +13,33 @@
 (def castings (atom nil))
 (def stop-fn (atom nil))
 
+(defn setup-casting [req]
+  (let [
+         body (:body req)
+         json-map (json/read-str (slurp body))
+       ]
+       (reset! castings {:player1 (json-map "player1") :player2 (json-map "player2") :arbiter (json-map "arbiter")})
+       {
+         :status 200
+         :headers {"Content-Type" "application/json"}
+         :body (json/write-str {:data ["setupOK"]})
+       }
+  )
+)
+
 (defn request-casting [req]
-  {
-    :status 200
-    :headers {"Content-Type" "application/json"}
-    :body (json/write-str {:data [(str {:status "castingOK" :castings @castings})]})
-  }
+  (if (= @castings nil)
+    {
+      :status 409
+      :headers {"Content-Type" "application/json"}
+      :body (json/write-str {:data ["No castings available!"]})
+    }
+    {
+      :status 200
+      :headers {"Content-Type" "application/json"}
+      :body (json/write-str {:data [(str {:status "castingOK" :castings @castings})]})
+    }
+  )
 )
 
 (defn notify-status [req]
@@ -45,6 +66,7 @@
 
 (defroutes app-routes
   (GET "/" [] "This is a web service for a customer requesting a game.")
+  (POST "/setup-casting" [] setup-casting)
   (GET "/request-casting" [] request-casting)
   (GET "/notify-status" [] notify-status)
   (GET "/notify-timeout" [] notify-timeout)
@@ -56,13 +78,8 @@
 (defn -main
   "Application main entry."
   [& args]
-  (let [
-         json-map (try (json/read-str (slurp "resources/game_setup.json"))
-	            (catch java.io.FileNotFoundException e (throw e)))
-	 castings-atom-value (reset! castings {:player1 (json-map "player1") :player2 (json-map "player2") :arbiter (json-map "arbiter")})
-         port (Integer/parseInt (or (System/getenv "PORT") "2000"))
-       ]
-       (reset! stop-fn (server/run-server (wrap-defaults #'app-routes site-defaults) {:port port}))
+  (let [port (Integer/parseInt (or (System/getenv "PORT") "2000"))]
+       (reset! stop-fn (server/run-server (wrap-defaults #'app-routes api-defaults) {:port port}))
        (println (str "Running '" (:ns (meta #'-main)) "' as webservice at 'http://127.0.0.1:" port "'"))
   )
 )

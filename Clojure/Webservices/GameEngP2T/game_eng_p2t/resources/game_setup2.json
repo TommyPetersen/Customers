@@ -1,0 +1,5 @@
+{
+  "arbiter": "local-clojure-agent://games.connect-four.non-interactive-arbiter/arbiter",
+  "player1": "local-clojure-agent://games.connect-four.interactive-gui-player/player1",
+  "player2": "local-clojure-agent://games.connect-four.interactive-text-player/player2"
+}
