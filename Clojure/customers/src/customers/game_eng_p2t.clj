@@ -144,6 +144,7 @@
   	 first-data-element (first (:data unit-input))
        ]
        (case first-data-element
+         "init-customer" {:data ["Ok"]}
          "request-casting" (let [castings (cast-actors)]
 	                     {:data [(str {:status "castingOK" :castings castings})]}
 			   )

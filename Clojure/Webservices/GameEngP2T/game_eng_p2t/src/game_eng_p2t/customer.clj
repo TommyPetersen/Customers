@@ -13,6 +13,15 @@
 (def castings (atom nil))
 (def stop-fn (atom nil))
 
+(defn init-customer [req]
+  (reset! castings nil)
+  {
+    :status 200
+    :headers {"Content-Type" "application/json"}
+    :body (json/write-str {:data ["Ok"]})
+  }
+)
+
 (defn setup-casting [req]
   (let [
          body (:body req)
@@ -66,6 +75,7 @@
 
 (defroutes app-routes
   (GET "/" [] "This is a web service for a customer requesting a game.")
+  (GET "/init-customer" [] init-customer)
   (POST "/setup-casting" [] setup-casting)
   (GET "/request-casting" [] request-casting)
   (GET "/notify-status" [] notify-status)
