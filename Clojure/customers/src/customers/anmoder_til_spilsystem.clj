@@ -156,7 +156,7 @@
        (case first-data-element
          "nulstil" {:data ["Ok"]}
          "anmodOmUdvaelgelse" (let [castings (cast-actors)]
-	                        {:data [(str {:status "udvaelgelseOK" :udvaelgelser castings})]}
+	                        {:data [(str {:status "udvaelgelseOK" :udvaelgelse castings})]}
 			      )
          "meddelStatus" (do
                           (println "\n\tSpilstatus: " (nth (:data unit-input) 1) "\n")
