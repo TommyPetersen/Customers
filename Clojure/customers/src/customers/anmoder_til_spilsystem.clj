@@ -162,7 +162,7 @@
                           (println "\n\tSpilstatus: " (nth (:data unit-input) 1) "\n")
 			  {:data ["statusModtaget"]}
 			)
-	 ;;; Foelgende kommer fra "dk-aia-clojure.utilities: ;;;
+	 ;;; Foelgende kommer fra "leipstral.hjaelpefunktioner: ;;;
 	 "notify-timeout" (do
 	                    (println "\n\t*** Tiden er udloebet ***\n")
 	                    {:data []}
