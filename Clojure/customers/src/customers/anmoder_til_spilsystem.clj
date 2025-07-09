@@ -162,8 +162,7 @@
                           (println "\n\tSpilstatus: " (nth (:data unit-input) 1) "\n")
 			  {:data ["statusModtaget"]}
 			)
-	 ;;; Foelgende kommer fra "leipstral.hjaelpefunktioner: ;;;
-	 "notify-timeout" (do
+	 "meddel-tidsudloeb" (do
 	                    (println "\n\t*** Tiden er udloebet ***\n")
 	                    {:data []}
 			  )

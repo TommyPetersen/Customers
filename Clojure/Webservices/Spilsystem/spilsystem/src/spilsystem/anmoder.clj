@@ -59,11 +59,11 @@
     }
 )
 
-(defn notify-timeout [req]
+(defn meddel-tidsudloeb [req]
   {
     :status 200
     :headers {"Content-Type" "application/json"}
-    :body (json/write-str {:data ["Oh no, time is up!"]})
+    :body (json/write-str {:data ["Tiden er udloebet!"]})
   }
 )
 
@@ -77,7 +77,7 @@
   (POST "/fastsaetudvaelgelse" [] fastsaet-udvaelgelse)
   (GET "/anmodOmUdvaelgelse" [] anmod-om-udvaelgelse)
   (GET "/meddelStatus" [] meddel-status)
-  (GET "/notify-timeout" [] notify-timeout)
+  (GET "/meddel-tidsudloeb" [] meddel-tidsudloeb)
   (GET "/stopTjenesten" [] stop-tjenesten)
   
   (route/not-found "Fejl, den anmodede side findes ikke!")
