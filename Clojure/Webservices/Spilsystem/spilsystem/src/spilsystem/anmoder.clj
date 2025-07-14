@@ -72,7 +72,7 @@
 )
 
 (defroutes app-routes
-  (GET "/" [] "This is a web service for a customer requesting a game.")
+  (GET "/" [] "Dette er en webtjeneste til brug for en spilanmoder.")
   (GET "/initialiserAnmoder" [] initialiser-anmoder)
   (POST "/fastsaetudvaelgelse" [] fastsaet-udvaelgelse)
   (GET "/anmodOmUdvaelgelse" [] anmod-om-udvaelgelse)
