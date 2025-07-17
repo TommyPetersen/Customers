@@ -74,10 +74,10 @@
 (defroutes app-routes
   (GET "/" [] "Dette er en webtjeneste til brug for en spilanmoder.")
   (GET "/initialiserAnmoder" [] initialiser-anmoder)
-  (POST "/fastsaetudvaelgelse" [] fastsaet-udvaelgelse)
+  (POST "/fastsaetUdvaelgelse" [] fastsaet-udvaelgelse)
   (GET "/anmodOmUdvaelgelse" [] anmod-om-udvaelgelse)
   (GET "/meddelStatus" [] meddel-status)
-  (GET "/meddel-tidsudloeb" [] meddel-tidsudloeb)
+  (GET "/meddelTidsudloeb" [] meddel-tidsudloeb)
   (GET "/stopTjenesten" [] stop-tjenesten)
   
   (route/not-found "Fejl, den anmodede side findes ikke!")

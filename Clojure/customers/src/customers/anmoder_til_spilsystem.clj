@@ -162,7 +162,7 @@
                           (println "\n\tSpilstatus: " (nth (:data unit-input) 1) "\n")
 			  {:data ["statusModtaget"]}
 			)
-	 "meddel-tidsudloeb" (do
+	 "meddelTidsudloeb" (do
 	                    (println "\n\t*** Tiden er udloebet ***\n")
 	                    {:data []}
 			  )
