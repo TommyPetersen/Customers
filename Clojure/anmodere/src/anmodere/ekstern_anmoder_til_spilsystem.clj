@@ -1,4 +1,4 @@
-(ns customers.anmoder-til-spilsystem
+(ns anmodere.ekstern-anmoder-til-spilsystem
   (:require [clojure.string :as str])
 )
 
