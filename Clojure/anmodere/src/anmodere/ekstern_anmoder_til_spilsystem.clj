@@ -7,19 +7,24 @@
   (println "\t*** Spiller1 ***")
   (println "\tValg\tBeskrivelse")
   (println "\t----\t-----------")
-  (println "\t1\t[Traek en vinder] Ikke-interaktiv spiller som \"lokal-clojureagent\"")
+  (println "\t1\t[Traek en vinder] Ikke-interaktiv spiller")
   (println "\t2\t[Traek en vinder] Interaktiv tekstbaseret spiller (forudvalgt)")
   (println "\t\t")
   (println "\t3\t[Fire paa stribe] Interaktiv tekstbaseret spiller")
   (println "\t4\t[Fire paa stribe] Interaktiv grafikbaseret spiller")
-  (println "\t5\t[Fire paa stribe] Ikke-interaktiv spiller baseret paa tilfaeldige traek som \"lokal-clojureagent\"")
-  (println "\t6\t[Fire paa stribe] Ikke-interaktiv spiller baseret paa minimax som \"lokal-clojureagent\"")
+  (println "\t5\t[Fire paa stribe] Ikke-interaktiv spiller baseret paa tilfaeldige traek")
+  (println "\t6\t[Fire paa stribe] Ikke-interaktiv spiller baseret paa minimax")
   (println "\t\t")
   (println "\t7\t[Infektion] Interaktiv tekstbaseret spiller")
   (println "\t8\t[Infektion] Interaktiv grafikbaseret spiller")
-  (println "\t9\t[Infektion] Ikke-interaktiv spiller baseret paa tilfaeldige traek som \"lokal-clojureagent\"")
-  (println "\t10\t[Infektion] Ikke-interaktiv spiller baseret paa minimax som \"lokal-clojureagent\"")
+  (println "\t9\t[Infektion] Ikke-interaktiv spiller baseret paa tilfaeldige traek")
+  (println "\t10\t[Infektion] Ikke-interaktiv spiller baseret paa minimax")
+  (println "\t\t")
+  (println "\t11\t[Sandt eller falskt] Ikke-interaktiv spiller")
+  (println "\t12\t[Sandt eller falskt] Interaktiv tekstbaseret spiller")
+  (println)
   (println "\tAndet\t*forudvalgt*")
+  (println)
   (print "\tVaelg spiller: ")
   (flush)
   (let [player-choice (read-line)]
@@ -37,6 +42,9 @@
       "9" "lokal-clojureagent://games.infection.ikke-interaktiv-spiller-baseret-paa-tilfaeldige-traek/spiller1"
       "10" "lokal-clojureagent://games.infection.ikke-interaktiv-spiller-baseret-paa-minimax/spiller1"
       
+      "11" "lokal-clojureagent://spil.sandt-eller-falskt.ikke-interaktiv-spiller1/spiller1"
+      "12" "lokal-clojureagent://spil.sandt-eller-falskt.interaktiv-tekstbaseret-spiller/spiller1"
+
       "lokal-clojureagent://games.draw-a-winner.interaktiv-tekstbaseret-spiller/spiller1"
     )
   )
@@ -47,19 +55,24 @@
   (println "\t*** Spiller2 ***")
   (println "\tValg\tBeskrivelse")
   (println "\t----\t-----------")
-  (println "\t1\t[Traek en vinder] Ikke-interaktiv spiller som \"lokal-clojureagent\" (forudvalgt)")
+  (println "\t1\t[Traek en vinder] Ikke-interaktiv spiller (forudvalgt)")
   (println "\t2\t[Traek en vinder] Interaktiv tekstbaseret spiller")
   (println "\t\t")
   (println "\t3\t[Fire paa stribe] Interaktiv tekstbaseret spiller")
   (println "\t4\t[Fire paa stribe] Interaktiv grafikbaseret spiller")
-  (println "\t5\t[Fire paa stribe] Ikke-interaktiv spiller baseret paa tilfaeldige traek som \"lokal-clojureagent\"")
-  (println "\t6\t[Fire paa stribe] Ikke-interaktiv spiller baseret paa minimax som \"lokal-clojureagent\"")
+  (println "\t5\t[Fire paa stribe] Ikke-interaktiv spiller baseret paa tilfaeldige traek")
+  (println "\t6\t[Fire paa stribe] Ikke-interaktiv spiller baseret paa minimax")
   (println "\t\t")
   (println "\t7\t[Infektion] Interaktiv tekstbaseret spiller")
   (println "\t8\t[Infektion] Interaktiv grafikbaseret spiller")
-  (println "\t9\t[Infektion] Ikke-interaktiv spiller baseret paa tilfaeldige traek som \"lokal-clojureagent\"")
-  (println "\t10\t[Infektion] Ikke-interaktiv spiller baseret paa minimax som \"lokal-clojureagent\"")
+  (println "\t9\t[Infektion] Ikke-interaktiv spiller baseret paa tilfaeldige traek")
+  (println "\t10\t[Infektion] Ikke-interaktiv spiller baseret paa minimax")
+  (println "\t\t")
+  (println "\t11\t[Sandt eller falskt] Ikke-interaktiv spiller")
+  (println "\t12\t[Sandt eller falskt] Interaktiv tekstbaseret spiller")
+  (println)
   (println "\tAndet\t*forudvalgt*")
+  (println)
   (print "\tVaelg spiller: ")
   (flush)
   (let [player-choice (read-line)]
@@ -77,6 +90,9 @@
       "9" "lokal-clojureagent://games.infection.ikke-interaktiv-spiller-baseret-paa-tilfaeldige-traek/spiller2"
       "10" "lokal-clojureagent://games.infection.ikke-interaktiv-spiller-baseret-paa-minimax/spiller2"
       
+      "11" "lokal-clojureagent://spil.sandt-eller-falskt.ikke-interaktiv-spiller2/spiller2"
+      "12" "lokal-clojureagent://spil.sandt-eller-falskt.interaktiv-tekstbaseret-spiller/spiller2"
+
       "lokal-clojureagent://games.draw-a-winner.ikke-interaktiv-spiller2/spiller2"
     )
   )
@@ -87,12 +103,16 @@
   (println "\t*** Dommer ***")
   (println "\tValg\tBeskrivelse")
   (println "\t----\t-----------")
-  (println "\t1\t[Traek en vinder] Ikke-interaktiv dommer som \"lokal-clojureagent\" (forudvalgt)")
+  (println "\t1\t[Traek en vinder] Ikke-interaktiv dommer (forudvalgt)")
   (println "\t\t")
-  (println "\t2\t[Fire paa stribe] Ikke-interaktiv dommer som \"lokal-clojureagent\"")
+  (println "\t2\t[Fire paa stribe] Ikke-interaktiv dommer")
   (println "\t\t")
-  (println "\t3\t[Infektion] Ikke-interaktiv dommer som \"lokal-clojureagent\"")
+  (println "\t3\t[Infektion] Ikke-interaktiv dommer")
+  (println "\t\t")
+  (println "\t4\t[Sandt eller falskt] Ikke-interaktiv dommer")
+  (println)
   (println "\tAndet\t*forudvalgt*")
+  (println)
   (print "\tVaelg dommer: ")
   (flush)
   (let [arbiter-choice (read-line)]
@@ -103,6 +123,8 @@
       
       "3" "lokal-clojureagent://games.infection.ikke-interaktiv-dommer/dommer"
       
+      "4" "lokal-clojureagent://spil.sandt-eller-falskt.ikke-interaktiv-dommer/dommer"
+
       "lokal-clojureagent://games.draw-a-winner.ikke-interaktiv-dommer/dommer"
     )
   )
