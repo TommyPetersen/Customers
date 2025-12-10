@@ -84,7 +84,6 @@
                                (let [
                                       spilvalg (vaelg-spil)
                                     ]
-                                    (.turnOff ((grafikmodul :tilstand) :kamera))
                                     {
                                       :spiller1 (:spiller1 spilvalg)
                                       :spiller2 (:spiller2 spilvalg)
@@ -128,7 +127,16 @@
                          )
                          {:data ["Ok"]}
                        )
-             "anmodOmUdvaelgelse" {:data [(str {:status "udvaelgelseOK" :udvaelgelse (foretag-udvaelgelse)})]}
+             "anmodOmUdvaelgelse" (let [
+                                         udvaelgelse (foretag-udvaelgelse)
+                                         lokalisering (.getLocationOnScreen (.getScreen ((grafikmodul :tilstand) :kamera)))
+                                         vindueslokalisering-x (int (.getX lokalisering))
+                                         vindueslokalisering-y (int (.getY lokalisering))
+                                         dialogsystem {:vindueslokalisering-x vindueslokalisering-x :vindueslokalisering-y vindueslokalisering-y}
+                                       ]
+                                       (.turnOff ((grafikmodul :tilstand) :kamera))
+                                       {:data [(str {:status "udvaelgelseOK" :udvaelgelse udvaelgelse :dialogsystem dialogsystem})]}
+                                  )
              "meddelStatus" {:data ["statusModtaget"]}
              "meddelTidsudloeb" {:data []}
 
