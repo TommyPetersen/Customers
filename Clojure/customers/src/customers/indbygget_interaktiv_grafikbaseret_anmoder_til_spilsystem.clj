@@ -5,7 +5,8 @@
             [clojure.string :as str]
             [clojure.core.async :refer [go <!! timeout]]
   )
-  (:import (java.awt.event MouseAdapter))
+  (:import (java.awt.event MouseAdapter WindowAdapter)
+           (java.lang System))
 )
 
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -57,7 +58,14 @@
                              fortsaet-nedtaelling-for-spiller (:fortsaet-loekken resultat-af-udfoer-loekke)
                              _ (reset! behandl-alle-musehaendelsestyper true)
                              _ (reset! kanal-til-hent-udvaelgelse (timeout tidsgraense))
-                             cellekoordinat (let [indeks (<!! @kanal-til-hent-udvaelgelse)] (if (= indeks nil) [-1 -1] indeks))
+                             cellekoordinat (let [indeks (<!! @kanal-til-hent-udvaelgelse)]
+                               (if (= indeks nil)
+                                 (do
+                                   (.dispose (.getScreen (@(grafikmodul :tilstand) :kamera)))
+                                   [-1 -1]
+                                 )
+                                 indeks)
+                               )
                              _ (reset! behandl-alle-musehaendelsestyper false)
                              _ ((@(grafikmodul :funktionalitet) :opdater-tilstand) :valgte-celler-indekseret [])
                              _ ((@(grafikmodul :funktionalitet) :opdater-tilstand) :fokuseret-celle-indekseret nil)
@@ -124,6 +132,7 @@
                                                                 )
                                                               )
                               )
+                              (.addWindowListener skaerm (proxy [WindowAdapter] [] (windowClosing [vindueshaendelse] (System/exit 0))))
                          )
                          {:data ["Ok"]}
                        )
