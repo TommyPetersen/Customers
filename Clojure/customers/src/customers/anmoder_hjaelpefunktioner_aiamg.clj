@@ -405,7 +405,7 @@
 )
 
 (defn nyt-kamera [vinduesbredde vindueshoejde]
-  (new Camera 10.0 projektionsplanets-z-vaerdi vinduesbredde vindueshoejde vinduesbredde vindueshoejde)
+  (new Camera 10.0 projektionsplanets-z-vaerdi vinduesbredde vindueshoejde vinduesbredde vindueshoejde (/ vinduesbredde 2) (/ vindueshoejde 2) false)
 )
 
 ;;; Grafikmodul ;;;
