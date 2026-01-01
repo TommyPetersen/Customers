@@ -5,6 +5,7 @@
 	(java.awt Color)
 	(java.awt.event MouseEvent)
 	(Aiamg Camera Polygon3D Point3D Line3D)
+        (Aiamg.Utils ProjectionType)
   )
 )
 
@@ -159,10 +160,10 @@
 	                                   (new Point3D (:ramme-x1 ekstraramme) (:ramme-y0 ekstraramme) projektionsplanets-z-vaerdi rammefarve))
        ]
        (doto kamera
-	 (.updateScene venstre-ekstrarammelinie)
-         (.updateScene oevre-ekstrarammelinie)
-	 (.updateScene hoejre-ekstrarammelinie)
-	 (.updateScene nedre-ekstrarammelinie)
+	 (.updateScene venstre-ekstrarammelinie ProjectionType/PERSPECTIVE)
+         (.updateScene oevre-ekstrarammelinie ProjectionType/PERSPECTIVE)
+	 (.updateScene hoejre-ekstrarammelinie ProjectionType/PERSPECTIVE)
+	 (.updateScene nedre-ekstrarammelinie ProjectionType/PERSPECTIVE)
        )
   )
 )
@@ -191,7 +192,7 @@
                             )
          ]
          (doto kamera
-	   (.updateScene nedtaellingsfyld)
+	   (.updateScene nedtaellingsfyld ProjectionType/PERSPECTIVE)
          )
     )
   )
@@ -324,11 +325,11 @@
                 braetcelle (ny-braetcelle venstre-cellekant oevre-cellekant hoejre-cellekant nedre-cellekant braetcelle-margenpct cellerammefarve brikfarve)
 	      ]
               (doto kamera
-	        (.updateScene (:oevre-cellekant braetcelle))
-		(.updateScene (:nedre-cellekant braetcelle))
-		(.updateScene (:venstre-cellekant braetcelle))
-		(.updateScene (:hoejre-cellekant braetcelle))
-		(.updateScene (:cellebrik braetcelle))
+	        (.updateScene (:oevre-cellekant braetcelle ProjectionType/PERSPECTIVE))
+		(.updateScene (:nedre-cellekant braetcelle ProjectionType/PERSPECTIVE))
+		(.updateScene (:venstre-cellekant braetcelle ProjectionType/PERSPECTIVE))
+		(.updateScene (:hoejre-cellekant braetcelle ProjectionType/PERSPECTIVE))
+		(.updateScene (:cellebrik braetcelle ProjectionType/PERSPECTIVE))
 	      )
 	 )
   )
@@ -364,14 +365,14 @@
 	                                   (new Point3D (- (:venstre kantkoordinater) 1) (- (:bund kantkoordinater) 1) projektionsplanets-z-vaerdi Color/gray))
        ]
        (doto kamera
-	 (.updateScene venstre-basisrammelinie)
-         (.updateScene oevre-basisrammelinie)
-	 (.updateScene hoejre-basisrammelinie)
-	 (.updateScene nedre-basisrammelinie)
-	 (.updateScene venstre-cellerammelinie)
-	 (.updateScene oevre-cellerammelinie)
-	 (.updateScene hoejre-cellerammelinie)
-	 (.updateScene nedre-cellerammelinie)
+	 (.updateScene venstre-basisrammelinie ProjectionType/PERSPECTIVE)
+         (.updateScene oevre-basisrammelinie ProjectionType/PERSPECTIVE)
+	 (.updateScene hoejre-basisrammelinie ProjectionType/PERSPECTIVE)
+	 (.updateScene nedre-basisrammelinie ProjectionType/PERSPECTIVE)
+	 (.updateScene venstre-cellerammelinie ProjectionType/PERSPECTIVE)
+	 (.updateScene oevre-cellerammelinie ProjectionType/PERSPECTIVE)
+	 (.updateScene hoejre-cellerammelinie ProjectionType/PERSPECTIVE)
+	 (.updateScene nedre-cellerammelinie ProjectionType/PERSPECTIVE)
        )
        (opdater-scene-fra-cellekoordinater braet kamera cellekoordinater valgte-celler-indekseret fokuseret-celle-indekseret fokuseret-celle-rammefarve)
   )
