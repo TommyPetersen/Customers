@@ -5,7 +5,7 @@
 	(java.awt Color)
 	(java.awt.event MouseEvent)
 	(Aiamg Camera Polygon3D Point3D Line3D)
-        (Aiamg.Utils ProjectionType)
+        (Aiamg.Utils ProjectionType MetricType)
   )
 )
 
@@ -160,10 +160,10 @@
 	                                   (new Point3D (:ramme-x1 ekstraramme) (:ramme-y0 ekstraramme) projektionsplanets-z-vaerdi rammefarve))
        ]
        (doto kamera
-	 (.updateScene venstre-ekstrarammelinie ProjectionType/PERSPECTIVE)
-         (.updateScene oevre-ekstrarammelinie ProjectionType/PERSPECTIVE)
-	 (.updateScene hoejre-ekstrarammelinie ProjectionType/PERSPECTIVE)
-	 (.updateScene nedre-ekstrarammelinie ProjectionType/PERSPECTIVE)
+	 (.updateScene venstre-ekstrarammelinie ProjectionType/ORTHOGRAPHIC)
+         (.updateScene oevre-ekstrarammelinie ProjectionType/ORTHOGRAPHIC)
+	 (.updateScene hoejre-ekstrarammelinie ProjectionType/ORTHOGRAPHIC)
+	 (.updateScene nedre-ekstrarammelinie ProjectionType/ORTHOGRAPHIC)
        )
   )
 )
@@ -192,7 +192,7 @@
                             )
          ]
          (doto kamera
-	   (.updateScene nedtaellingsfyld ProjectionType/PERSPECTIVE)
+	   (.updateScene nedtaellingsfyld ProjectionType/ORTHOGRAPHIC)
          )
     )
   )
@@ -325,11 +325,11 @@
                 braetcelle (ny-braetcelle venstre-cellekant oevre-cellekant hoejre-cellekant nedre-cellekant braetcelle-margenpct cellerammefarve brikfarve)
 	      ]
               (doto kamera
-	        (.updateScene (:oevre-cellekant braetcelle ProjectionType/PERSPECTIVE))
-		(.updateScene (:nedre-cellekant braetcelle ProjectionType/PERSPECTIVE))
-		(.updateScene (:venstre-cellekant braetcelle ProjectionType/PERSPECTIVE))
-		(.updateScene (:hoejre-cellekant braetcelle ProjectionType/PERSPECTIVE))
-		(.updateScene (:cellebrik braetcelle ProjectionType/PERSPECTIVE))
+	        (.updateScene (:oevre-cellekant braetcelle ProjectionType/ORTHOGRAPHIC))
+		(.updateScene (:nedre-cellekant braetcelle ProjectionType/ORTHOGRAPHIC))
+		(.updateScene (:venstre-cellekant braetcelle ProjectionType/ORTHOGRAPHIC))
+		(.updateScene (:hoejre-cellekant braetcelle ProjectionType/ORTHOGRAPHIC))
+		(.updateScene (:cellebrik braetcelle ProjectionType/ORTHOGRAPHIC))
 	      )
 	 )
   )
@@ -365,14 +365,14 @@
 	                                   (new Point3D (- (:venstre kantkoordinater) 1) (- (:bund kantkoordinater) 1) projektionsplanets-z-vaerdi Color/gray))
        ]
        (doto kamera
-	 (.updateScene venstre-basisrammelinie ProjectionType/PERSPECTIVE)
-         (.updateScene oevre-basisrammelinie ProjectionType/PERSPECTIVE)
-	 (.updateScene hoejre-basisrammelinie ProjectionType/PERSPECTIVE)
-	 (.updateScene nedre-basisrammelinie ProjectionType/PERSPECTIVE)
-	 (.updateScene venstre-cellerammelinie ProjectionType/PERSPECTIVE)
-	 (.updateScene oevre-cellerammelinie ProjectionType/PERSPECTIVE)
-	 (.updateScene hoejre-cellerammelinie ProjectionType/PERSPECTIVE)
-	 (.updateScene nedre-cellerammelinie ProjectionType/PERSPECTIVE)
+	 (.updateScene venstre-basisrammelinie ProjectionType/ORTHOGRAPHIC)
+         (.updateScene oevre-basisrammelinie ProjectionType/ORTHOGRAPHIC)
+	 (.updateScene hoejre-basisrammelinie ProjectionType/ORTHOGRAPHIC)
+	 (.updateScene nedre-basisrammelinie ProjectionType/ORTHOGRAPHIC)
+	 (.updateScene venstre-cellerammelinie ProjectionType/ORTHOGRAPHIC)
+	 (.updateScene oevre-cellerammelinie ProjectionType/ORTHOGRAPHIC)
+	 (.updateScene hoejre-cellerammelinie ProjectionType/ORTHOGRAPHIC)
+	 (.updateScene nedre-cellerammelinie ProjectionType/ORTHOGRAPHIC)
        )
        (opdater-scene-fra-cellekoordinater braet kamera cellekoordinater valgte-celler-indekseret fokuseret-celle-indekseret fokuseret-celle-rammefarve)
   )
@@ -406,7 +406,7 @@
 )
 
 (defn nyt-kamera [vinduesbredde vindueshoejde]
-  (new Camera 10.0 projektionsplanets-z-vaerdi vinduesbredde vindueshoejde vinduesbredde vindueshoejde (/ vinduesbredde 2) (/ vindueshoejde 2) false)
+  (new Camera 10.0 projektionsplanets-z-vaerdi vinduesbredde vindueshoejde vinduesbredde vindueshoejde (/ vinduesbredde 2) (/ vindueshoejde 2) MetricType/Z_COORD)
 )
 
 ;;; Grafikmodul ;;;
