@@ -56,8 +56,15 @@
          (loop [
                  akkumuleret-tid 0
                ]
-               (loekkefunktion akkumuleret-tid)
-               (Thread/sleep tidsenhed)
+               (try
+                 (do
+                   (loekkefunktion akkumuleret-tid)
+                   (Thread/sleep tidsenhed)
+                 )
+                 (catch Exception e
+                   (reset! fortsaet-loekken false)
+                 )
+               )
                (if (and (<= akkumuleret-tid tidsgraense) @fortsaet-loekken)
                  (recur
                         (+ akkumuleret-tid tidsenhed)

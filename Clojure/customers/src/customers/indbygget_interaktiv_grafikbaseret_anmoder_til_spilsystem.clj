@@ -3,7 +3,7 @@
             (customers [anmoder-hjaelpefunktioner-aiamg :as anmoder-hjlp-aiamg]
                        [anmoder-hjaelpefunktioner-diverse :as anmoder-hjlp-div])
             [clojure.string :as str]
-            [clojure.core.async :refer [go <!! timeout]]
+            [clojure.core.async :refer [go <!! >! timeout]]
   )
   (:import (java.awt.event MouseAdapter WindowAdapter)
            (java.lang System))
@@ -38,15 +38,20 @@
                                     {:koordinat [1 1] :symbol "*"} {:koordinat [2 1] :symbol "*"} {:koordinat [3 1] :symbol "*"}]
                       }
          tegn-nedtaelling (fn [
-                                  samlet-tid-for-anmodning
-                                  tidsgraense
-                                ]
-                              (dosync
-                                ((@(grafikmodul :funktionalitet) :opdater-tilstand) :samlet-tid-for-anmodning samlet-tid-for-anmodning)
-                                ((@(grafikmodul :funktionalitet) :rens-laerred-tegn-og-vis-alt))
+                                samlet-tid-for-anmodning
+                                tidsgraense
+                              ]
+                              (try
+                                (dosync
+                                  ((@(grafikmodul :funktionalitet) :opdater-tilstand) :samlet-tid-for-anmodning samlet-tid-for-anmodning)
+                                  ((@(grafikmodul :funktionalitet) :rens-laerred-tegn-og-vis-alt))
+                                )
+                                (catch NullPointerException npe
+                                  (go (>! @kanal-til-hent-udvaelgelse [-1 -1]))
+                                  (throw npe)
+                                )
                               )
-                            )
-
+                          )
          vaelg-spil (fn []
                       (let [
                              resultat-af-udfoer-loekke (anmoder-hjlp-div/udfoer-loekke-via-atom
