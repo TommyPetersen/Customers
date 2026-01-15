@@ -5,7 +5,7 @@
 	(java.awt Color)
 	(java.awt.event MouseEvent)
 	(Aiamg Camera Polygon3D Point3D Line3D)
-        (Aiamg.Utils ProjectionType MetricType)
+        (Aiamg.Utils ProjectionType DistanceType)
   )
 )
 
@@ -406,7 +406,7 @@
 )
 
 (defn nyt-kamera [vinduesbredde vindueshoejde]
-  (new Camera 10.0 projektionsplanets-z-vaerdi vinduesbredde vindueshoejde vinduesbredde vindueshoejde (/ vinduesbredde 2) (/ vindueshoejde 2) MetricType/Z_COORD)
+  (new Camera 10.0 projektionsplanets-z-vaerdi vinduesbredde vindueshoejde vinduesbredde vindueshoejde (/ vinduesbredde 2) (/ vindueshoejde 2) DistanceType/Z_COORD)
 )
 
 ;;; Grafikmodul ;;;
