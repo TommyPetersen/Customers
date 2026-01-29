@@ -5,7 +5,7 @@
             [clojure.string :as str]
             [clojure.core.async :refer [go <!! >! timeout]]
   )
-  (:import (java.awt.event MouseAdapter WindowAdapter)
+  (:import (java.awt.event MouseAdapter WindowAdapter ComponentAdapter)
            (java.lang System))
 )
 
@@ -21,10 +21,6 @@
          grafikmodul anmoder-hjlp-aiamg/grafikmodul
          vinduesbredde 800
          vindueshoejde 600
-         basisramme (anmoder-hjlp-aiamg/beregn-basisramme vinduesbredde vindueshoejde)
-         cellegitterkoordinater (anmoder-hjlp-aiamg/beregn-cellegitterkoordinater 7 7 basisramme)
-         kantkoordinater (:kantkoordinater cellegitterkoordinater)
-         cellekoordinater (:cellekoordinater cellegitterkoordinater)
          braet (atom nil)
          tidsenhed 1000
          tidsgraense 120000
@@ -138,6 +134,20 @@
                                                               )
                               )
                               (.addWindowListener skaerm (proxy [WindowAdapter] [] (windowClosing [vindueshaendelse] (System/exit 0))))
+                              (.addComponentListener skaerm (proxy [ComponentAdapter] []
+                                                              (componentResized [komponenthaendelse]
+                                                                (let [
+                                                                       vin-bredde (.getWidth (.getScreen ((grafikmodul :tilstand) :kamera)))
+                                                                       vin-hoejde (.getHeight (.getScreen ((grafikmodul :tilstand) :kamera)))
+                                                                     ]
+                                                                     (dosync
+                                                                       ((@(grafikmodul :funktionalitet) :opdater-vinduesstoerrelse) vin-bredde vin-hoejde 7 7 [50 10 85 0])
+                                                                       ((@(grafikmodul :funktionalitet) :rens-laerred-tegn-og-vis-alt))
+                                                                     )
+                                                                )
+                                                              )
+                                                            )
+                              )
                          )
                          {:data ["Ok"]}
                        )
