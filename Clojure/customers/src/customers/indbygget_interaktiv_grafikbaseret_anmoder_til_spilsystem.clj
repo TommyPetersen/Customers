@@ -171,4 +171,13 @@
   )
 )
 
-(def anmoder (ny-anmoder))
+(def aktuel-anmoder (atom nil))
+
+(defn anmoder [enheds-inddata]
+  (let [
+         foerste-dataelement (first (:data enheds-inddata))
+       ]
+       (if (= foerste-dataelement "nulstil") (reset! aktuel-anmoder (ny-anmoder)))
+       (@aktuel-anmoder enheds-inddata)
+  )
+)
