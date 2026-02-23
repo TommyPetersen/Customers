@@ -22,6 +22,15 @@
   }
 )
 
+(defn nulstil [req]
+  ;;; I webtjenesten skal nulstilling af anmoderen ikke goere andet end at returnere "Ok".
+  {
+    :status 200
+    :headers {"Content-Type" "application/json"}
+    :body (json/write-str {:data ["Ok"]})
+  }
+)
+
 (defn fastsaet-udvaelgelse [req]
   (let [
          body (:body req)
@@ -74,6 +83,7 @@
 (defroutes app-routes
   (GET "/" [] "Dette er en webtjeneste til brug for en spilanmoder.")
   (GET "/initialiserAnmoder" [] initialiser-anmoder)
+  (GET "/nulstil" [] nulstil)
   (POST "/fastsaetUdvaelgelse" [] fastsaet-udvaelgelse)
   (GET "/anmodOmUdvaelgelse" [] anmod-om-udvaelgelse)
   (GET "/meddelStatus" [] meddel-status)
